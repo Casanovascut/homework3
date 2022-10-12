@@ -2,6 +2,8 @@
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword(){
+  var thePass = []
+  var arrayInUse = []
 
   var getPassLength = window.prompt("please select password length")
 
@@ -20,13 +22,38 @@ function generatePassword(){
 
   var getUpperCase = window.confirm("do you want your password to have uppercase characters?")
   var getLowerCase = window.confirm("do you want your password to have lowercase character?")
-  var getnumeric = window.confirm("do you want your password to have numbers?")
+  var getNumeric = window.confirm("do you want your password to have numbers?")
   var getSpecChar = window.confirm("do you want your passwaord to have special characters?")
 
+  var uppercaseChar = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ']
+  var lowercaseChar = ['abcdefghijklmnopqrstuvwxyz']
+  var specCharVal = ['!@#$%^&*+-/:;<>=?']
+  var numericValue = ['0123456789']
+
+  if (getUpperCase === true)
+    arrayInUse.push(uppercaseChar)
 
 
+  if (getLowerCase === true)
+    arrayInUse.push(lowercaseChar)
 
+  if (getSpecChar === true)
+    arrayInUse.push(specCharVal)
+  
+  if (getNumeric === true)
+    arrayInUse.push(numericValue)
 
+var usableArray = arrayInUse.toString().split('')
+
+var i = 0
+  
+do{ 
+  thePass.push(usableArray[Math.floor(Math.random()*usableArray.length - 1)])
+  i++;
+} while (i < passwordLength);
+
+let pass = thePass.join('')
+return pass
 }
 
 // Write password to the #password input
